@@ -5,7 +5,7 @@ let
   hosts = outputs.nixosConfigurations;
   prefix = "/persist";
   pubKey = host: ../../${host}/ssh_host_ed25519_key.pub;
-  gitHost = hosts."alcyone".config.networking.hostName;
+#  gitHost = hosts."alcyone".config.networking.hostName;
 in
 {
   services.openssh = {
@@ -32,8 +32,8 @@ in
       (name: _: {
         publicKeyFile = pubKey name;
         extraHostNames =
-          (lib.optional (name == hostName) "localhost") ++ # Alias for localhost if it's the same host
-          (lib.optionals (name == gitHost) [ "m7.rs" "git.m7.rs" ]); # Alias for m7.rs and git.m7.rs if it's the git host
+          (lib.optional (name == hostName) "localhost");# ++ # Alias for localhost if it's the same host
+        #  (lib.optionals (name == gitHost) [ "m7.rs" "git.m7.rs" ]); # Alias for m7.rs and git.m7.rs if it's the git host
       })
       hosts;
   };

@@ -2,8 +2,8 @@
   description = "My NixOS configuration";
 
   nixConfig = {
-    extra-substituters = [ "https://cache.m7.rs" ];
-    extra-trusted-public-keys = [ "cache.m7.rs:kszZ/NSwE/TjhOcPPQ16IuUiuRSisdiIwhKZCxguaWg=" ];
+   # extra-substituters = [ "https://cache.m7.rs" ];
+    #extra-trusted-public-keys = [ "cache.m7.rs:kszZ/NSwE/TjhOcPPQ16IuUiuRSisdiIwhKZCxguaWg=" ];
   };
 
   inputs = {
@@ -71,91 +71,24 @@
       formatter = forEachPkgs (pkgs: pkgs.nixpkgs-fmt);
 
       nixosConfigurations = {
-        # Desktop
-        atlas = nixpkgs.lib.nixosSystem {
+        phoenix = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/atlas ];
-        };
-        # Laptop
-        pleione = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/pleione ];
-        };
-        electra = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/electra ];
-        };
-        # Secondary Desktop
-        maia = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/maia ];
-        };
-        # Raspberry Pi 4
-        merope = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/merope ];
-        };
-        # Vultr VPS
-        # Used for critical stuff (headscale, email, prometheus, etc)
-        alcyone = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/alcyone ];
-        };
-        # Oracle Ampere VPS (free!)
-        # Used for hydra, game servers, etc
-        celaeno = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/celaeno ];
+          modules = [ ./hosts/phoenix ];
         };
       };
 
       homeConfigurations = {
         # Desktop
-        "misterio@atlas" = home-manager.lib.homeManagerConfiguration {
+        "egiorgis@phoenix" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/misterio/atlas.nix ];
-        };
-        # Laptop
-        "misterio@pleione" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/misterio/pleione.nix ];
-        };
-        "misterio@electra" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/misterio/electra.nix ];
-        };
-        # Secondary Desktop
-        "misterio@maia" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/misterio/maia.nix ];
-        };
-        # Raspi 4
-        "misterio@merope" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."aarch64-linux";
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/misterio/merope.nix ];
-        };
-        # Vultr VPS
-        "misterio@alcyone" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/misterio/alcyone.nix ];
-        };
-        # Oracle Ampere VPS
-        "misterio@celaeno" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."aarch64-linux";
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/misterio/celaeno.nix ];
+          modules = [ ./home/egiorgis/phoenix.nix ];
         };
         # Portable minimum configuration
-        "misterio@generic" = home-manager.lib.homeManagerConfiguration {
+        "egiorgis@generic" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/misterio/generic.nix ];
+          modules = [ ./home/egiorgis/generic.nix ];
         };
       };
     };
