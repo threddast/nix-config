@@ -35,6 +35,8 @@
     hyprwm-contrib.url = "github:hyprwm/contrib";
     firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
 
+    emacs-overlay.url  = "github:nix-community/emacs-overlay";
+
     website.url = "github:misterio77/website";
     paste-misterio-me.url = "github:misterio77/paste.misterio.me";
     yrmos.url = "github:misterio77/yrmos";
