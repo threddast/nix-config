@@ -2,6 +2,7 @@
 { lib, inputs, outputs, ... }:
 {
   imports = [
+    (lib.mkAliasOptionModule  [ "system" "persist" ] [ "environment" "persistence" "/persist" ])
     inputs.impermanence.nixosModules.impermanence
     inputs.home-manager.nixosModules.home-manager
     ./acme.nix
