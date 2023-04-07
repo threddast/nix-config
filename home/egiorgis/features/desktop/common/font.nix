@@ -2,12 +2,12 @@
   fontProfiles = {
     enable = true;
     monospace = {
-      family = "FiraCode Nerd Font";
-      package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
+      family = "Iosevka Nerd Font";
+      package = pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; };
     };
     regular = {
-      family = "Fira Sans";
-      package = pkgs.fira;
+      family = "Iosevka Aile";
+      package = pkgs.iosevka-bin.override { variant = "aile"; };
     };
   };
 }
